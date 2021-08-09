@@ -1,63 +1,96 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
-const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-    const { as, href, ...other } = props;
+export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
+  const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
+    props;
 
-    return (
-        <NextLink href={href} as={as}>
-            <a ref={ref} {...other} />
-        </NextLink>
-    );
+  return (
+    <NextLink
+      href={to}
+      prefetch={prefetch}
+      as={linkAs}
+      replace={replace}
+      scroll={scroll}
+      shallow={shallow}
+      passHref={passHref}
+      locale={locale}
+    >
+      <a ref={ref} {...other} />
+    </NextLink>
+  );
 });
 
-NextComposed.propTypes = {
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    prefetch: PropTypes.bool,
+NextLinkComposed.propTypes = {
+  href: PropTypes.any,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locale: PropTypes.string,
+  passHref: PropTypes.bool,
+  prefetch: PropTypes.bool,
+  replace: PropTypes.bool,
+  scroll: PropTypes.bool,
+  shallow: PropTypes.bool,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
 };
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function CustomLink(props) {
-    const {
-        href,
-        activeClassName = 'active',
-        className: classNameProps,
-        innerRef,
-        naked,
-        ...other
-    } = props;
+const Link = React.forwardRef(function Link(props, ref) {
+  const {
+    activeClassName = 'active',
+    as: linkAs,
+    className: classNameProps,
+    href,
+    noLinkStyle,
+    role, // Link don't have roles.
+    ...other
+  } = props;
 
-    const router = useRouter();
-    const pathname = typeof href === 'string' ? href : href.pathname;
-    const className = clsx(classNameProps, {
-        [activeClassName]: router.pathname === pathname && activeClassName,
-    });
+  const router = useRouter();
+  const pathname = typeof href === 'string' ? href : href.pathname;
+  const className = clsx(classNameProps, {
+    [activeClassName]: router.pathname === pathname && activeClassName,
+  });
 
-    if (naked) {
-        return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
+  const isExternal =
+    typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
+
+  if (isExternal) {
+    if (noLinkStyle) {
+      return <a className={className} href={href} ref={ref} {...other} />;
     }
 
-    return (
-        <MuiLink component={NextComposed} className={className} ref={innerRef} href={href} {...other} />
-    );
-}
+    return <MuiLink className={className} href={href} ref={ref} {...other} />;
+  }
 
-CustomLink.propTypes = {
-    activeClassName: PropTypes.string,
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    className: PropTypes.string,
-    href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    naked: PropTypes.bool,
-    onClick: PropTypes.func,
-    prefetch: PropTypes.bool,
+  if (noLinkStyle) {
+    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />;
+  }
+
+  return (
+    <MuiLink
+      component={NextLinkComposed}
+      linkAs={linkAs}
+      className={className}
+      ref={ref}
+      to={href}
+      {...other}
+    />
+  );
+});
+
+Link.propTypes = {
+  activeClassName: PropTypes.string,
+  as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  className: PropTypes.string,
+  href: PropTypes.any,
+  noLinkStyle: PropTypes.bool,
+  role: PropTypes.string,
 };
 
-export default React.forwardRef(function Link(props, ref) { return <CustomLink {...props} innerRef={ref} /> });
+export default Link;
