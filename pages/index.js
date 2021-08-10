@@ -6,7 +6,9 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { styled } from '@material-ui/core/styles';
 import Divider from '../components/Divider';
-import DotControls from '../components/DotControls';
+// import DotControls from '../components/DotControls';
+import PageControls from '../components/PageControls';
+import ParticlesControls from '../components/ParticlesControls';
 
 
 const Preview = styled(Paper)(({ theme }) => ({
@@ -52,7 +54,7 @@ export default function Index() {
           </Grid>
           <Grid item xs={12} md={8}>
             <Controls elevation={1}>
-              <DotControls/>
+              <ParticlesControls/>
             </Controls>
           </Grid>
         </Grid>

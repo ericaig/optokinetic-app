@@ -2,44 +2,26 @@ import { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Popover from '@material-ui/core/Popover';
-import { ColorPicker as ReactColorPicker, useColor, toColor } from "react-color-palette";
+import { ColorPicker as ReactColorPicker, useColor } from "react-color-palette";
 
 import "react-color-palette/lib/css/styles.css";
 
 const ColorPicker = () => {
-    // const [open, setOpen] = useState(false);
-    const [color, setColor] = useColor("hex", "#121212");
+    const [color, setColor] = useColor("hex", "#09ace4");
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    }
-
-    const handleClose = (event) => {
-        setAnchorEl(null);
-    }
-
-    const handleColorChange = (value) => {
-        setColor(value);
-    }
-
-    const handleManualColorChange = (value) => {
-        const _color = value.target.value;
-
-        // setColor()
-
-        console.log("onChange=", toColor("hex", _color));
-        // setColor(value);
-    }
-
+    const handleClick = (event) => setAnchorEl(event.currentTarget)
+    const handleClose = () => setAnchorEl(null)
+    const handleColorChange = (value) => setColor(value)
     const open = Boolean(anchorEl);
     const id = open ? 'color-palette-popover' : undefined;
 
     return (
         <>
-            <div aria-describedby={id} onClick={handleClick}>
+            <div aria-describedby={id}>
                 <InputLabel>Color</InputLabel>
                 <Button
+                    onClick={handleClick}
                     variant="outlined"
                     style={{ backgroundColor: color.hex }}
                     disableElevation
