@@ -1,4 +1,5 @@
-import { Button, ButtonGroup, FormControl, FormLabel, Slider, Typography } from "@material-ui/core"
+import { useState } from "react";
+import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography } from "@material-ui/core"
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
 import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
@@ -6,17 +7,38 @@ import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined'
 import Divider from "./Divider";
 import ColorPicker from "./ColorPicker";
 
+enum MovementDirectionsEnum {
+    LEFT = "left",
+    UP = "up",
+    DOWN = "down",
+    RIGHT = "right",
+}
+
 const ParticlesControls = () => {
+    const [movementDirection, setMovementDirection] = useState(MovementDirectionsEnum.LEFT);
+
+    const handleMovementDirectionChange = (_: any, _val: MovementDirectionsEnum) => {
+        setMovementDirection(_val);
+    }
+
     return (
         <>
             <FormControl fullWidth>
                 <FormLabel>Movement direction</FormLabel>
-                <ButtonGroup fullWidth disableElevation aria-label="outlined primary button group">
-                    <Button startIcon={<ArrowBackOutlinedIcon />}>Left</Button>
-                    <Button startIcon={<ArrowUpwardOutlinedIcon />}>Up</Button>
-                    <Button startIcon={<ArrowDownwardOutlinedIcon />}>Down</Button>
-                    <Button startIcon={<ArrowForwardOutlinedIcon />}>Right</Button>
-                </ButtonGroup>
+                <ToggleButtonGroup color="primary" fullWidth size="small" value={movementDirection} exclusive onChange={handleMovementDirectionChange}>
+                    <ToggleButton value={MovementDirectionsEnum.LEFT} key={MovementDirectionsEnum.LEFT}>
+                        <ArrowBackOutlinedIcon />&nbsp;Left
+                    </ToggleButton>
+                    <ToggleButton value={MovementDirectionsEnum.UP} key={MovementDirectionsEnum.UP}>
+                        <ArrowUpwardOutlinedIcon />&nbsp;Up
+                    </ToggleButton>
+                    <ToggleButton value={MovementDirectionsEnum.DOWN} key={MovementDirectionsEnum.DOWN}>
+                        <ArrowDownwardOutlinedIcon />&nbsp;Down
+                    </ToggleButton>
+                    <ToggleButton value={MovementDirectionsEnum.RIGHT} key={MovementDirectionsEnum.RIGHT}>
+                        <ArrowForwardOutlinedIcon />&nbsp;Right
+                    </ToggleButton>
+                </ToggleButtonGroup>
             </FormControl>
 
             <Divider />
@@ -68,7 +90,7 @@ const ParticlesControls = () => {
 
             <Divider />
 
-            <ColorPicker/>
+            <ColorPicker />
 
         </>
     )

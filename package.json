@@ -2,6 +2,12 @@
   "name": "nextjs",
   "version": "5.0.0",
   "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
   "dependencies": {
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
@@ -17,10 +23,10 @@
     "react-dom": "latest",
     "react-tsparticles": "^1.33.2"
   },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
   }
 }
