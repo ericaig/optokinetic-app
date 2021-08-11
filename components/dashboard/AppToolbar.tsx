@@ -1,7 +1,7 @@
-import { Toolbar, Typography,Stack } from '@material-ui/core';
+import { Toolbar, Typography, Stack } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import React from 'react';
-import AppBreadcrumbs from './AppBreadCrumbs';
+import AppBreadcrumbs from './AppBreadcrumbs';
 
 interface AppToolbarProps {
     reqs: {
@@ -25,6 +25,8 @@ interface AppToolbarProps {
     }
 }
 
+// TODO: use https://next.material-ui.com/components/grid/
+// instead this shenanigans of CSS I made here 🤷🏾‍♂️
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     alignItems: 'flex-end',
     flexDirection: 'row',
@@ -35,6 +37,22 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     '@media all': {
         paddingLeft: 0,
         paddingRight: 0,
+    },
+    [theme.breakpoints.down('lg')]: {
+        alignItems: 'start',
+        flexDirection: 'column',
+        justifyContent: 'start',
+    },
+}));
+
+const ActionsContainer = styled(Stack)(({ theme }) => ({
+    alignSelf: "center",
+    [theme.breakpoints.down('lg')]: {
+        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.down('md')]: {
+        alignSelf: "start",
     },
 }));
 
@@ -57,10 +75,10 @@ export default function AppToolbar(props: AppToolbarProps) {
                     {showBreadcrumb && <AppBreadcrumbs />}
                 </div>
 
-                {actions.length &&
-                    <Stack spacing={2} direction="row" alignSelf="center">
+                {!!actions.length &&
+                    <ActionsContainer spacing={2} direction="row">
                         {actions.map((action, i) => <div key={i}>{action}</div>)}
-                    </Stack>
+                    </ActionsContainer>
                 }
             </StyledToolbar>
         </>

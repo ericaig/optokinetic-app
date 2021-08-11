@@ -40,7 +40,7 @@ export default function AppBreadcrumbs() {
         return { id: i, breadcrumb: _pathMap?.name || path, href, icon: _pathMap?.icon };
     });
 
-    if (!_paths.length) return;
+    if (!_paths.length) return <></>;
 
     const _last = _paths.pop()
 

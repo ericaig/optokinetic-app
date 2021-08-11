@@ -137,7 +137,7 @@ const AppBar: FC<AppBarProps> = (props) => {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                        Material-UI
+                        {"Optokinetic"}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

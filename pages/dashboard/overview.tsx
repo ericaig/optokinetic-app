@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Typography } from "@material-ui/core";
 import AppTitle from "../../components/dashboard/AppTitle";
 import AppToolbar from "../../components/dashboard/AppToolbar";
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 export default function Overview() {
     return <>
@@ -12,9 +13,9 @@ export default function Overview() {
             subtitle: "Here's what's happening with your projects today",
             showBreadcrumb: false,
             actions: [
-                <Button onClick={() => console.log("Clicked booton")} variant="contained" sx={{ mr: 0.5 }}>Testing...</Button>,
-                <Button variant="contained" sx={{ mr: 0.5 }}>Testing...</Button>,
-                <Button variant="contained" sx={{ mr: 0.5 }}>Testing...</Button>,
+                <Button onClick={() => console.log("Clicked booton")} sx={{ mr: 0.5 }} variant="contained" startIcon={<AddRoundedIcon />}>
+                    New Transaction
+                </Button>,
             ]
         }} />
 
