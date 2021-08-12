@@ -135,7 +135,7 @@ const AppBar: FC<AppBarProps> = (props) => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { xs: 'none', sm: 'block' }, color: "white" }}
                     >
                         {"Optokinetic"}
                     </Typography>

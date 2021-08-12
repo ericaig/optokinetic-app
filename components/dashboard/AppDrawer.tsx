@@ -1,16 +1,9 @@
 import React, { FC, useState } from "react"
-import { Box, Collapse, Divider, Drawer, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Toolbar } from "@material-ui/core"
+import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button } from "@material-ui/core"
 import { styled } from '@material-ui/core/styles';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import KeyboardArrowRightRoundedIcon from '@material-ui/icons/KeyboardArrowRightRounded';
-import KeyboardArrowDownRoundedIcon from '@material-ui/icons/KeyboardArrowDownRounded';
-import StarBorder from '@material-ui/icons/StarBorder';
+import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
-
+import Link from '../Link';
 interface AppDrawerProps {
     reqs: {
         drawerWidth: number,
@@ -23,13 +16,29 @@ const DrawerContainer = styled('div')(({ theme }) => ({
     paddingTop: theme.spacing(8),
 }));
 
+const MenuGroup = styled(Box)(({ theme }) => ({
+    padding: `0 ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
+
+    '& .side-menu-item': {
+        fontWeight: theme.typography.fontWeightMedium,
+        '&.active': {
+            color: theme.palette.primary.main,
+        },
+        '&:not(.active)': {
+            color: theme.palette.secondary.main,
+        }
+    }
+}));
+
+const ListSubheader = styled(MuiListSubheader)(({ theme }) => ({
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.typography.body1.color,
+    textTransform: "uppercase",
+    fontSize: theme.typography.caption.fontSize
+}));
+
 const AppDrawer: FC<AppDrawerProps> = (props) => {
     const { reqs: { drawerWidth, mobileOpen, handleDrawerToggle } } = props;
-    const [open, setOpen] = useState(true);
-
-    const handleClick = () => {
-        setOpen(!open);
-    }
 
     const drawer = (
         <DrawerContainer>
@@ -37,191 +46,68 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
 
             <Divider />
 
-            <List
-                sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                        Nested List Items
-                    </ListSubheader>
-                }
-            >
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <SendIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Drafts" />
-                </ListItemButton>
-                <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <KeyboardArrowDownRoundedIcon /> : <KeyboardArrowRightRoundedIcon />}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto">
-                    <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItemButton>
-                    </List>
-                </Collapse>
-            </List>
+            <MenuGroup>
+                <List
+                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                    aria-label="General"
+                    subheader={
+                        <ListSubheader disableGutters disableSticky>
+                            General
+                        </ListSubheader>
+                    }
+                >
+                    <ListItem disablePadding disableGutters dense>
+                        <Button
+                            startIcon={<AssessmentOutlinedIcon />}
+                            key="general-analytics-1"
+                            href="/dashboard"
+                            LinkComponent={Link}
+                            aria-label="Overview"
+                            variant="text"
+                            fullWidth
+                            className="side-menu-item"
+                            sx={{
+                                padding: (theme) => {
+                                    const _spX = theme.spacing(1)
+                                    const _spY = theme.spacing(2 * .75)
+                                    // 12px 8px 12px 16px
+                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
+                                },
+                                justifyContent: "start",
+                                textTransform: "inherit",
+                            }}
+                        >
+                            Overview
+                        </Button>
+                    </ListItem>
+                    <ListItem disablePadding disableGutters dense>
+                        <Button
+                            startIcon={<AssessmentOutlinedIcon />}
+                            key="general-analytics-1"
+                            href="/dashboard/analytics"
+                            LinkComponent={Link}
+                            aria-label="Analytics"
+                            variant="text"
+                            fullWidth
+                            className="side-menu-item"
+                            sx={{
+                                padding: (theme) => {
+                                    const _spX = theme.spacing(1)
+                                    const _spY = theme.spacing(2 * .75)
+                                    // 12px 8px 12px 16px
+                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
+                                },
+                                justifyContent: "start",
+                                textTransform: "inherit",
+                            }}
+                        >
+                            Analytics
+                        </Button>
+                    </ListItem>
+
+                </List>
+            </MenuGroup>
+
         </DrawerContainer>
     )
 

@@ -4,7 +4,7 @@ import { styled } from '@material-ui/core/styles';
 import AppBar from '../../components/dashboard/AppBar';
 import AppDrawer from '../../components/dashboard/AppDrawer'
 
-const drawerWidth = 300;
+const drawerWidth = 280;
 
 const Main = styled(Box)(({ theme }) => ({
     flexGrow: 1,

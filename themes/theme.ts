@@ -3,12 +3,11 @@ import { createTheme } from '@material-ui/core/styles';
 // Create a theme instance.
 const theme = createTheme({
   palette: {
-    text: {},
     primary: {
       main: '#556cd6',
     },
     secondary: {
-      main: '#19857b',
+      main: '#6b778c',
     },
     error: {
       main: '#ff1744',
@@ -19,7 +18,8 @@ const theme = createTheme({
   },
   typography: {
     allVariants: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+      color: "rgb(23, 43, 77)",
     },
     h5: {
       fontWeight: 600,
