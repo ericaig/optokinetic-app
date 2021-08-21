@@ -1,34 +1,20 @@
-import { useState } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Radio from '@material-ui/core/Radio';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { useState } from 'react';
+import { Paper, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Slider, Typography, styled } from '@material-ui/core';
 import Divider from './Divider';
+import ColorPicker from './ColorPicker';
 
-import { ColorPicker, useColor } from "react-color-palette";
-import "react-color-palette/lib/css/styles.css";
+const Control = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+}));
 
 export default function DotControls() {
   const [dotDisplacement, setDotDisplacement] = useState('');
-  const [color, setColor] = useColor("hex", "#121212");
-  // const [color, setColor] = useState(createColor("#000"));
 
-  const handleDotDisplacementChange = (event) => {
+  const handleDotDisplacementChange = (event: any) => {
     setDotDisplacement(event.target.value);
   };
 
-  // const handleColorChange = (value) => {
-  //   console.log("onChange=", value);
-  //   setColor(value);
-  // };
-
-  return <>
+  return <Control aria-label="Dot controls" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
     <FormControl component="fieldset" fullWidth>
       <FormLabel component="legend">Visibility</FormLabel>
       <RadioGroup row aria-label="position" name="position" defaultValue="top">
@@ -61,14 +47,23 @@ export default function DotControls() {
       />
     </FormControl>
 
+    {/* <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
+      <Avatar alt="Remy Sharp" sx={{ width: 20, height: 20 }}>2</Avatar>
+      <Avatar alt="Remy Sharp" sx={{ width: 40, height: 40 }}>40%</Avatar>
+      <Avatar alt="Remy Sharp" sx={{ width: 60, height: 60 }}>60%</Avatar>
+      <Avatar alt="Remy Sharp" sx={{ width: 80, height: 80 }}>80%</Avatar>
+      <Avatar alt="Remy Sharp" sx={{ width: 100, height: 100 }}>100%</Avatar>
+    </Stack> */}
+
     <Divider />
 
-    <FormControl component="fieldset" fullWidth>
+    <FormControl fullWidth>
       <InputLabel id="dot-displacement-delay">Displacement delay</InputLabel>
       <Select
         labelId="dot-displacement-delay"
         id="dot-displacement-select"
         value={dotDisplacement}
+        label="Displacement delay"
         onChange={handleDotDisplacementChange}
       >
         {Array(5).fill(0).map((_, i) => <MenuItem key={i} value={i + 1}>{`${i + 1} seconds`}</MenuItem>)}
@@ -77,9 +72,8 @@ export default function DotControls() {
 
     <Divider />
 
-    <FormControl component="fieldset" fullWidth>
-      <InputLabel>Color</InputLabel>
-      <ColorPicker width={456} height={228} color={color} onChange={setColor} alpha hideRGB hideHSV />
-    </FormControl>
-  </>
+
+
+    <ColorPicker />
+  </Control>
 }
