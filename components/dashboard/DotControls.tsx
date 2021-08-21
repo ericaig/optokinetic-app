@@ -1,27 +1,20 @@
-import { useState } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Radio from '@material-ui/core/Radio';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Avatar from '@material-ui/core/Avatar';
-import Stack from '@material-ui/core/Stack';
+import React, { useState } from 'react';
+import { Paper, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Slider, Typography, styled } from '@material-ui/core';
 import Divider from './Divider';
 import ColorPicker from './ColorPicker';
+
+const Control = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+}));
 
 export default function DotControls() {
   const [dotDisplacement, setDotDisplacement] = useState('');
 
-  const handleDotDisplacementChange = (event) => {
+  const handleDotDisplacementChange = (event: any) => {
     setDotDisplacement(event.target.value);
   };
 
-  return <>
+  return <Control aria-label="Dot controls" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
     <FormControl component="fieldset" fullWidth>
       <FormLabel component="legend">Visibility</FormLabel>
       <RadioGroup row aria-label="position" name="position" defaultValue="top">
@@ -82,5 +75,5 @@ export default function DotControls() {
 
 
     <ColorPicker />
-  </>
+  </Control>
 }

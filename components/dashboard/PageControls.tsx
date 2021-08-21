@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography } from "@material-ui/core"
+import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled } from "@material-ui/core"
 import RotateRightOutlinedIcon from '@material-ui/icons/RotateRightOutlined';
 import ScreenLockRotationOutlinedIcon from '@material-ui/icons/ScreenLockRotationOutlined';
 import RotateLeftOutlinedIcon from '@material-ui/icons/RotateLeftOutlined';
@@ -12,7 +12,17 @@ enum SpinDirectionsEnum {
     RIGHT = "right",
 }
 
-const PageControls = () => {
+const Control = styled(Paper)(({ theme }) => ({
+    padding: theme.spacing(2),
+}));
+
+interface PagesCtrlProps {
+    reqs?: {
+        onColorChange?: (hex: string) => void
+    }
+}
+
+const PageControls = (props: PagesCtrlProps) => {
     const [movementDirection, setMovementDirection] = useState(SpinDirectionsEnum.NONE);
 
     const handleMovementDirectionChange = (_: any, _val: SpinDirectionsEnum) => {
@@ -20,7 +30,7 @@ const PageControls = () => {
     }
 
     return (
-        <>
+        <Control aria-label="Page controls" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
             <FormControl fullWidth>
                 <FormLabel>Spin direction</FormLabel>
                 <ToggleButtonGroup color="primary" fullWidth size="small" value={movementDirection} exclusive onChange={handleMovementDirectionChange}>
@@ -56,7 +66,7 @@ const PageControls = () => {
 
             <ColorPicker />
 
-        </>
+        </Control>
     )
 }
 

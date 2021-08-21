@@ -1,10 +1,12 @@
 import React, { FC, useState } from "react"
-import { Toolbar, IconButton, Typography, Badge, Box, AppBar as MuiAppBar, Menu, MenuItem } from "@material-ui/core"
+import { Toolbar, IconButton, Typography, Badge, Box, AppBar as MuiAppBar, Menu, MenuItem, Button } from "@material-ui/core"
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Link from "../Link";
+import Routes from "../../lib/routes";
 
 interface AppBarProps{
     reqs: {
@@ -17,7 +19,7 @@ const AppBar: FC<AppBarProps> = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleProfileMenuOpen = (event: any) => {
         setAnchorEl(event.currentTarget);
     }
 
@@ -30,7 +32,7 @@ const AppBar: FC<AppBarProps> = (props) => {
         handleMobileMenuClose();
     }
 
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMobileMenuOpen = (event: any) => {
         setMobileMoreAnchorEl(event.currentTarget);
     }
 
@@ -137,7 +139,7 @@ const AppBar: FC<AppBarProps> = (props) => {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' }, color: "white" }}
                     >
-                        {"Optokinetic"}
+                        <Link href={Routes.HOME}>{"Optokinetic"}</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

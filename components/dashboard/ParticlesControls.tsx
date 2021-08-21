@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography } from "@material-ui/core"
+import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled, Box, Grid, Button } from "@material-ui/core"
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
 import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
@@ -14,7 +14,17 @@ enum MovementDirectionsEnum {
     RIGHT = "right",
 }
 
-const ParticlesControls = () => {
+const Control = styled(Paper)(({ theme }) => ({
+    padding: theme.spacing(2),
+}));
+
+interface ParticlesCtrlProps {
+    reqs?: {
+        onColorChange?: (hex: string) => void
+    }
+}
+
+const ParticlesControls = (props: ParticlesCtrlProps) => {
     const [movementDirection, setMovementDirection] = useState(MovementDirectionsEnum.LEFT);
 
     const handleMovementDirectionChange = (_: any, _val: MovementDirectionsEnum) => {
@@ -22,7 +32,7 @@ const ParticlesControls = () => {
     }
 
     return (
-        <>
+        <Control aria-label="Particles control" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
             <FormControl fullWidth>
                 <FormLabel>Movement direction</FormLabel>
                 <ToggleButtonGroup color="primary" fullWidth size="small" value={movementDirection} exclusive onChange={handleMovementDirectionChange}>
@@ -92,7 +102,7 @@ const ParticlesControls = () => {
 
             <ColorPicker />
 
-        </>
+        </Control>
     )
 }
 

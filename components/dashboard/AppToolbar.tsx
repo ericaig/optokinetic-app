@@ -32,7 +32,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
+    // paddingBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
     // Override media queries injected by theme.mixins.toolbar
     '@media all': {
         paddingLeft: 0,
@@ -42,6 +43,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
         alignItems: 'start',
         flexDirection: 'column',
         justifyContent: 'start',
+        // marginBottom: theme.spacing(0),
     },
 }));
 
@@ -66,7 +68,7 @@ export default function AppToolbar(props: AppToolbarProps) {
                     {!!superscriptTitle && <Typography variant="caption" component="div" sx={{ mb: 1 }}>
                         {superscriptTitle}
                     </Typography>}
-                    <Typography variant="h5">
+                    <Typography variant="h5" sx={{ fontWeight: (theme) => theme.typography.fontWeightMedium }}>
                         {title}
                     </Typography>
                     {!!subtitle && <Typography variant="subtitle2" component="div">

@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.11.2",
     "clsx": "latest",
     "next": "latest",
+    "nprogress": "^0.2.0",
     "prop-types": "latest",
     "react": "latest",
     "react-color-palette": "^6.1.0",

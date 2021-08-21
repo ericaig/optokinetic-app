@@ -1,9 +1,13 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button } from "@material-ui/core"
 import { styled } from '@material-ui/core/styles';
-import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
+import SettingsIcon from '@material-ui/icons/Settings';
+import CategoryIcon from '@material-ui/icons/Category';
+import InsertChartIcon from '@material-ui/icons/InsertChart';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
+import Routes from "../../lib/routes";
+
 interface AppDrawerProps {
     reqs: {
         drawerWidth: number,
@@ -38,7 +42,9 @@ const ListSubheader = styled(MuiListSubheader)(({ theme }) => ({
 }));
 
 const AppDrawer: FC<AppDrawerProps> = (props) => {
-    const { reqs: { drawerWidth, mobileOpen, handleDrawerToggle } } = props;
+    const { reqs: { drawerWidth, mobileOpen, handleDrawerToggle } } = props
+
+    const handleMobileMenuToggler = () => (mobileOpen && handleDrawerToggle())
 
     const drawer = (
         <DrawerContainer>
@@ -58,14 +64,15 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
                 >
                     <ListItem disablePadding disableGutters dense>
                         <Button
-                            startIcon={<AssessmentOutlinedIcon />}
+                            startIcon={<CategoryIcon />}
                             key="general-analytics-1"
-                            href="/dashboard"
+                            href={Routes.DASHBOARD}
                             LinkComponent={Link}
                             aria-label="Overview"
                             variant="text"
                             fullWidth
                             className="side-menu-item"
+                            onClick={handleDrawerToggle}
                             sx={{
                                 padding: (theme) => {
                                     const _spX = theme.spacing(1)
@@ -82,14 +89,15 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
                     </ListItem>
                     <ListItem disablePadding disableGutters dense>
                         <Button
-                            startIcon={<AssessmentOutlinedIcon />}
+                            startIcon={<InsertChartIcon />}
                             key="general-analytics-1"
-                            href="/dashboard/analytics"
+                            href={Routes.ANALYTICS}
                             LinkComponent={Link}
                             aria-label="Analytics"
                             variant="text"
                             fullWidth
                             className="side-menu-item"
+                            onClick={handleDrawerToggle}
                             sx={{
                                 padding: (theme) => {
                                     const _spX = theme.spacing(1)
@@ -104,7 +112,31 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
                             Analytics
                         </Button>
                     </ListItem>
-
+                    <ListItem disablePadding disableGutters dense>
+                        <Button
+                            startIcon={<SettingsIcon />}
+                            key="general-analytics-1"
+                            href={Routes.CONFIGURATOR}
+                            LinkComponent={Link}
+                            aria-label="Configurator"
+                            variant="text"
+                            fullWidth
+                            className="side-menu-item"
+                            onClick={handleDrawerToggle}
+                            sx={{
+                                padding: (theme) => {
+                                    const _spX = theme.spacing(1)
+                                    const _spY = theme.spacing(2 * .75)
+                                    // 12px 8px 12px 16px
+                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
+                                },
+                                justifyContent: "start",
+                                textTransform: "inherit",
+                            }}
+                        >
+                            Configurator
+                        </Button>
+                    </ListItem>
                 </List>
             </MenuGroup>
 

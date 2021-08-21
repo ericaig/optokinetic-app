@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react"
-import { Toolbar, Box, Tooltip, Grid, Avatar, Typography } from "@material-ui/core"
+import React from "react"
+import { Toolbar, Tooltip, Grid, Avatar, Typography } from "@material-ui/core"
 import { styled } from '@material-ui/core/styles';
 import Link from '../Link';
 
@@ -25,7 +25,7 @@ const GridStyles = styled(Grid)(({ theme }) => ({
     },
 }));
 
-const GridItem = styled(Grid)(({ theme }) => ({
+const GridItem = styled(Grid)(() => ({
     display: "flex",
     justifyContent: "center",
 }));
