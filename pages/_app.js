@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
@@ -8,6 +8,7 @@ import { CacheProvider } from '@emotion/react';
 import theme from '../themes/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import Dashboard from '../components/dashboard/App';
+import NProgress from '../components/NProgress';
 import Routes from '../lib/routes';
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -26,6 +27,7 @@ function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <NProgress showSpinner={false} />
         {_page}
       </ThemeProvider>
     </CacheProvider>
