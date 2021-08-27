@@ -5,12 +5,8 @@ import ScreenLockRotationOutlinedIcon from '@material-ui/icons/ScreenLockRotatio
 import RotateLeftOutlinedIcon from '@material-ui/icons/RotateLeftOutlined';
 import Divider from "./Divider";
 import ColorPicker from "./ColorPicker";
-
-enum SpinDirectionsEnum {
-    LEFT = "left",
-    NONE = "none",
-    RIGHT = "right",
-}
+import { ACTIONS, useConfiguratorContext } from "@contexts/ConfiguratorContext";
+import { SPIN_DIRECTIONS } from "@enums/directions";
 
 const Control = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(2),
@@ -23,25 +19,24 @@ interface PagesCtrlProps {
 }
 
 const PageControls = (props: PagesCtrlProps) => {
-    const [movementDirection, setMovementDirection] = useState(SpinDirectionsEnum.NONE);
+    const { page: { color, speed, spin }, dispatch } = useConfiguratorContext()
 
-    const handleMovementDirectionChange = (_: any, _val: SpinDirectionsEnum) => {
-        setMovementDirection(_val);
-    }
+    const handleMovementDirectionChange = (_: any, _val: SPIN_DIRECTIONS) =>
+        dispatch({ type: ACTIONS.UPDATE_PAGE_SPIN_DIRECTION, payload: { spin: _val } })
 
     return (
         <Control aria-label="Page controls" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
             <FormControl fullWidth>
                 <FormLabel>Spin direction</FormLabel>
-                <ToggleButtonGroup color="primary" fullWidth size="small" value={movementDirection} exclusive onChange={handleMovementDirectionChange}>
-                    <ToggleButton value={SpinDirectionsEnum.LEFT} key={SpinDirectionsEnum.LEFT}>
-                        <RotateLeftOutlinedIcon />&nbsp;Spin left
+                <ToggleButtonGroup color="primary" fullWidth size="small" value={spin} exclusive onChange={handleMovementDirectionChange}>
+                    <ToggleButton value={SPIN_DIRECTIONS.ANTICLOCKWISE} key={SPIN_DIRECTIONS.ANTICLOCKWISE}>
+                        <RotateLeftOutlinedIcon />&nbsp;Spin {SPIN_DIRECTIONS.ANTICLOCKWISE}
                     </ToggleButton>
-                    <ToggleButton value={SpinDirectionsEnum.NONE} key={SpinDirectionsEnum.NONE}>
+                    <ToggleButton value={SPIN_DIRECTIONS.NONE} key={SPIN_DIRECTIONS.NONE}>
                         <ScreenLockRotationOutlinedIcon />&nbsp;No spinning
                     </ToggleButton>
-                    <ToggleButton value={SpinDirectionsEnum.RIGHT} key={SpinDirectionsEnum.RIGHT}>
-                        <RotateRightOutlinedIcon />&nbsp;Spin right
+                    <ToggleButton value={SPIN_DIRECTIONS.CLOCKWISE} key={SPIN_DIRECTIONS.CLOCKWISE}>
+                        <RotateRightOutlinedIcon />&nbsp;Spin {SPIN_DIRECTIONS.CLOCKWISE}
                     </ToggleButton>
                 </ToggleButtonGroup>
             </FormControl>
@@ -51,20 +46,20 @@ const PageControls = (props: PagesCtrlProps) => {
             <FormControl fullWidth>
                 <FormLabel id="rotate-speed-ctrl">
                     Spin speed&nbsp;
-                    <Typography component="span" variant="caption">(50)</Typography>
+                    <Typography component="span" variant="caption">({speed})</Typography>
                 </FormLabel>
                 <Slider
-                    defaultValue={50}
+                    value={speed}
                     getAriaValueText={(_val) => `${_val} pixels`}
                     aria-labelledby="rotate-speed-ctrl"
-                    // marks={marks}
+                    onChange={(_, v) => dispatch({ type: ACTIONS.UPDATE_PAGE_SPIN_SPEED, payload: { speed: v } })}
                     valueLabelDisplay="auto"
                 />
             </FormControl>
 
             <Divider />
 
-            <ColorPicker />
+            <ColorPicker value={color} onChange={(v: string) => dispatch({ type: ACTIONS.UPDATE_PAGE_COLOR, payload: { color: v } })} />
 
         </Control>
     )

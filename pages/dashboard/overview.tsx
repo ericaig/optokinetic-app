@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Typography } from "@material-ui/core";
-import AppTitle from "../../components/dashboard/AppTitle";
-import AppToolbar from "../../components/dashboard/AppToolbar";
+import AppTitle from "@components/dashboard/AppTitle";
+import AppToolbar from "@components/dashboard/AppToolbar";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 export default function Overview() {

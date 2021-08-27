@@ -6,7 +6,7 @@ import CategoryIcon from '@material-ui/icons/Category';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
-import Routes from "../../lib/routes";
+import Routes from "@lib/routes";
 
 interface AppDrawerProps {
     reqs: {

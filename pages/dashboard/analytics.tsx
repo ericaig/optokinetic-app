@@ -1,5 +1,5 @@
-import AppTitle from "../../components/dashboard/AppTitle";
-import AppToolbar from "../../components/dashboard/AppToolbar";
+import AppTitle from "@components/dashboard/AppTitle";
+import AppToolbar from "@components/dashboard/AppToolbar";
 
 export default function Analytics() {
     return <>
