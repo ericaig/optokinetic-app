@@ -6,28 +6,16 @@ import { ColorPicker as ReactColorPicker, useColor, Color } from "react-color-pa
 
 import "react-color-palette/lib/css/styles.css";
 
-// interface ColorPickerProps {
-//     reqs?: {
-//         onChange?: (hex: string) => void,
-//         test?: string
-//     }
-// }
-
-const ColorPicker = (props: any) => {
-    const { onChange = () => {} } = props
-
-
-    const [color, setColor] = useColor("hex", "#09ace4");
+const ColorPicker = (props: { value: string, onChange: (hex: string) => void, width?: number, height?: number }) => {
+    const { onChange = () => { }, value, width = 228, height = 114 } = props
+    const [color, setColor] = useColor("hex", value || "#09ace4");
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event: any) => setAnchorEl(event.currentTarget)
     const handleClose = () => setAnchorEl(null)
-    const handleColorChange = (value: any) => {
-        console.log(value.hex);
-
-        onChange(value.hex)
-
-        return setColor(value)
+    const handleColorChange = (_color: Color) => {
+        onChange(_color.hex)
+        return setColor(_color)
     }
     const open = Boolean(anchorEl);
     const id = open ? 'color-palette-popover' : undefined;
@@ -53,7 +41,7 @@ const ColorPicker = (props: any) => {
                     horizontal: 'left',
                 }}
             >
-                <ReactColorPicker width={228} height={114} color={color} onChange={handleColorChange} alpha hideRGB hideHSV />
+                <ReactColorPicker width={width} height={height} color={color} onChange={(v) => handleColorChange(v as Color)} alpha hideRGB hideHSV />
             </Popover>
         </>
     )

@@ -6,13 +6,8 @@ import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
 import Divider from "./Divider";
 import ColorPicker from "./ColorPicker";
-
-enum MovementDirectionsEnum {
-    LEFT = "left",
-    UP = "up",
-    DOWN = "down",
-    RIGHT = "right",
-}
+import { useConfiguratorContext, ACTIONS } from "@contexts/ConfiguratorContext";
+import { DIRECTIONS } from "@enums/directions";
 
 const Control = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(2),
@@ -25,27 +20,26 @@ interface ParticlesCtrlProps {
 }
 
 const ParticlesControls = (props: ParticlesCtrlProps) => {
-    const [movementDirection, setMovementDirection] = useState(MovementDirectionsEnum.LEFT);
+    const { particles: { count, size, speed, color, direction }, dispatch } = useConfiguratorContext()
 
-    const handleMovementDirectionChange = (_: any, _val: MovementDirectionsEnum) => {
-        setMovementDirection(_val);
-    }
+    const handleMovementDirectionChange = (_: any, _val: DIRECTIONS) =>
+        dispatch({ type: ACTIONS.UPDATE_PARTICLES_DIRECTION, payload: { direction: _val } })
 
     return (
         <Control aria-label="Particles control" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
             <FormControl fullWidth>
                 <FormLabel>Movement direction</FormLabel>
-                <ToggleButtonGroup color="primary" fullWidth size="small" value={movementDirection} exclusive onChange={handleMovementDirectionChange}>
-                    <ToggleButton value={MovementDirectionsEnum.LEFT} key={MovementDirectionsEnum.LEFT}>
+                <ToggleButtonGroup color="primary" fullWidth size="small" value={direction} exclusive onChange={handleMovementDirectionChange}>
+                    <ToggleButton value={DIRECTIONS.LEFT} key={DIRECTIONS.LEFT}>
                         <ArrowBackOutlinedIcon />&nbsp;Left
                     </ToggleButton>
-                    <ToggleButton value={MovementDirectionsEnum.UP} key={MovementDirectionsEnum.UP}>
+                    <ToggleButton value={DIRECTIONS.UP} key={DIRECTIONS.UP}>
                         <ArrowUpwardOutlinedIcon />&nbsp;Up
                     </ToggleButton>
-                    <ToggleButton value={MovementDirectionsEnum.DOWN} key={MovementDirectionsEnum.DOWN}>
+                    <ToggleButton value={DIRECTIONS.DOWN} key={DIRECTIONS.DOWN}>
                         <ArrowDownwardOutlinedIcon />&nbsp;Down
                     </ToggleButton>
-                    <ToggleButton value={MovementDirectionsEnum.RIGHT} key={MovementDirectionsEnum.RIGHT}>
+                    <ToggleButton value={DIRECTIONS.RIGHT} key={DIRECTIONS.RIGHT}>
                         <ArrowForwardOutlinedIcon />&nbsp;Right
                     </ToggleButton>
                 </ToggleButtonGroup>
@@ -56,12 +50,15 @@ const ParticlesControls = (props: ParticlesCtrlProps) => {
             <FormControl fullWidth>
                 <FormLabel id="particles-count-ctrl">
                     Particles count&nbsp;
-                    <Typography component="span" variant="caption">(50)</Typography>
+                    <Typography component="span" variant="caption">({count})</Typography>
                 </FormLabel>
                 <Slider
-                    defaultValue={50}
+                    value={count}
+                    min={0}
+                    max={300}
                     getAriaValueText={(_val) => `${_val} pixels`}
                     aria-labelledby="particles-count-ctrl"
+                    onChange={(_, v) => dispatch({ type: ACTIONS.UPDATE_PARTICLES_COUNT, payload: { count: v } })}
                     // marks={marks}
                     valueLabelDisplay="auto"
                 />
@@ -72,10 +69,13 @@ const ParticlesControls = (props: ParticlesCtrlProps) => {
             <FormControl fullWidth>
                 <FormLabel id="particles-count-ctrl">
                     Size (min / max)&nbsp;
-                    <Typography component="span" variant="caption">(10 / 50)</Typography>
+                    <Typography component="span" variant="caption">({size.join(" / ")})</Typography>
                 </FormLabel>
                 <Slider
-                    defaultValue={[10, 50]}
+                    min={0}
+                    max={50}
+                    value={size}
+                    onChange={(_, v) => dispatch({ type: ACTIONS.UPDATE_PARTICLES_SIZE, payload: { size: v } })}
                     getAriaValueText={(_val) => `${_val} pixels`}
                     aria-labelledby="particles-count-ctrl"
                     valueLabelDisplay="auto"
@@ -87,20 +87,20 @@ const ParticlesControls = (props: ParticlesCtrlProps) => {
             <FormControl fullWidth>
                 <FormLabel id="movement-speed-ctrl">
                     Movement speed&nbsp;
-                    <Typography component="span" variant="caption">(50)</Typography>
+                    <Typography component="span" variant="caption">({speed})</Typography>
                 </FormLabel>
                 <Slider
-                    defaultValue={50}
+                    value={speed}
                     getAriaValueText={(_val) => `${_val} pixels`}
                     aria-labelledby="movement-speed-ctrl"
-                    // marks={marks}
+                    onChange={(_, v) => dispatch({ type: ACTIONS.UPDATE_PARTICLES_SPEED, payload: { speed: v } })}
                     valueLabelDisplay="auto"
                 />
             </FormControl>
 
             <Divider />
 
-            <ColorPicker />
+            <ColorPicker value={color} onChange={(v: string) => dispatch({ type: ACTIONS.UPDATE_PARTICLES_COLOR, payload: { color: v } })} />
 
         </Control>
     )

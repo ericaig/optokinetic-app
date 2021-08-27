@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from '../themes/theme';
-import createEmotionCache from '../src/createEmotionCache';
-import Dashboard from '../components/dashboard/App';
-import NProgress from '../components/NProgress';
-import Routes from '../lib/routes';
+import theme from '@src/themes/theme';
+import createEmotionCache from '@src/createEmotionCache';
+import Dashboard from '@components/dashboard/App';
+import NProgress from '@components/NProgress';
+import Routes from '@lib/routes';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
