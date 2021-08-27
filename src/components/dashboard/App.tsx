@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
-import AppBar from '../../components/dashboard/AppBar';
-import AppDrawer from '../../components/dashboard/AppDrawer'
+import AppBar from './AppBar';
+import AppDrawer from './AppDrawer'
 
 const drawerWidth = 280;
 

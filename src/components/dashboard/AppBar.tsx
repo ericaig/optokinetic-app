@@ -6,7 +6,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Link from "../Link";
-import Routes from "../../lib/routes";
+import Routes from "@lib/routes";
 
 interface AppBarProps{
     reqs: {

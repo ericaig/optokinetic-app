@@ -29,5 +29,52 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "typescript": "latest"
+  },
+  "next-unused": {
+    "alias": {
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@contexts/*": [
+        "src/contexts/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@enums/*": [
+        "src/enums/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ]
+    },
+    "debug": true,
+    "include": [
+      "components",
+      "lib",
+      "pages"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "pages"
+    ]
   }
 }

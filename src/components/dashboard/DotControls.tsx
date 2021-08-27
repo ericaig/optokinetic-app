@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { Paper, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Slider, Typography, styled } from '@material-ui/core';
 import Divider from './Divider';
 import ColorPicker from './ColorPicker';
+import { ACTIONS, useConfiguratorContext } from '@contexts/ConfiguratorContext';
 
 const Control = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
 export default function DotControls() {
-  const [dotDisplacement, setDotDisplacement] = useState('');
+  const { dot: { color, displacementDelay, enabled, size }, dispatch } = useConfiguratorContext()
 
-  const handleDotDisplacementChange = (event: any) => {
-    setDotDisplacement(event.target.value);
-  };
+  const handleDotDisplacementChange = (event: any) =>
+    dispatch({ type: ACTIONS.UPDATE_DOT_DISPLACEMENT_DELAY, payload: { displacementDelay: event.target.value } })
 
   return <Control aria-label="Dot controls" elevation={0} sx={{ border: 1, borderColor: 'divider' }}>
     <FormControl component="fieldset" fullWidth>
       <FormLabel component="legend">Visibility</FormLabel>
-      <RadioGroup row aria-label="position" name="position" defaultValue="top">
+      <RadioGroup row aria-label="position" name="position" value={enabled} onChange={(e) => dispatch({ type: ACTIONS.UPDATE_DOT_STATE, payload: { enabled: e.target.value === "true" } })}>
         <FormControlLabel
-          value="top"
+          value={true}
           control={<Radio color="primary" />}
           label="Visible"
         />
         <FormControlLabel
-          value="start"
+          value={false}
           control={<Radio color="primary" />}
           label="Not Visible"
         />
@@ -39,10 +39,10 @@ export default function DotControls() {
       </Typography>
 
       <Slider
-        defaultValue={50}
+        value={size}
         getAriaValueText={(_val) => `${_val} pixels`}
         aria-labelledby="dot-size-ctrl"
-        // marks={marks}
+        onChange={(_, v) => dispatch({ type: ACTIONS.UPDATE_DOT_SIZE, payload: { size: v } })}
         valueLabelDisplay="auto"
       />
     </FormControl>
@@ -62,7 +62,7 @@ export default function DotControls() {
       <Select
         labelId="dot-displacement-delay"
         id="dot-displacement-select"
-        value={dotDisplacement}
+        value={displacementDelay}
         label="Displacement delay"
         onChange={handleDotDisplacementChange}
       >
@@ -74,6 +74,6 @@ export default function DotControls() {
 
 
 
-    <ColorPicker />
+    <ColorPicker value={color} onChange={(v: string) => dispatch({ type: ACTIONS.UPDATE_DOT_COLOR, payload: { color: v } })} />
   </Control>
 }

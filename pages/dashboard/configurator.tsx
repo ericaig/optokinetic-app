@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
 import LaunchIcon from '@material-ui/icons/Launch';
-import AppTitle from "../../components/dashboard/AppTitle";
-import AppToolbar from "../../components/dashboard/AppToolbar";
-import Configurator from "../../components/dashboard/Configurator";
+import AppTitle from "@components/dashboard/AppTitle";
+import AppToolbar from "@components/dashboard/AppToolbar";
+import Configurator from "@components/dashboard/Configurator";
 
 export default function ConfiguratorPage() {
     return (
