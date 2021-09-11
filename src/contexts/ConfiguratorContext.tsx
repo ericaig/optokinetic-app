@@ -1,8 +1,13 @@
-import { createContext, useContext, useReducer, Dispatch } from "react";
-import { ReducerAction } from "@interfaces/reducer";
+import { createContext, useContext, useReducer, Dispatch, useEffect } from "react";
+// import ReducerAction from "@interfaces/reducer";
 import { DIRECTIONS, SPIN_DIRECTIONS } from "@enums/directions";
+import ReducerAction from "@interfaces/reducer";
+
+const STORAGE_KEY = "tmpConfig";
 
 export enum ACTIONS {
+    SET_INITIAL_CONFIG,
+
     // particles
     UPDATE_PARTICLES_DIRECTION,
     UPDATE_PARTICLES_COUNT,
@@ -66,7 +71,17 @@ interface ConfiguratorCtxInterface {
     particles: ParticlesItemsInterface,
     page: PageItemsInterface,
     dot: DotItemsInterface,
-    dispatch: Dispatch<ReducerAction<ACTIONS>>
+    dispatch: Dispatch<ReducerAction<ACTIONS>>,
+    // dispatchers: { [key: string]: (...args: any) => void },
+}
+
+const saveToLocalStorage = (state: ConfiguratorCtxInterface) => {
+    return window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state || {}))
+}
+
+const retrieveConfigFromLocalStorage = () => {
+    const res = window.localStorage.getItem(STORAGE_KEY)
+    return (res ? JSON.parse(res) : defaultValues) as ConfiguratorCtxInterface
 }
 
 function reducer(state: ConfiguratorCtxInterface, action: ReducerAction<ACTIONS>) {
@@ -74,39 +89,61 @@ function reducer(state: ConfiguratorCtxInterface, action: ReducerAction<ACTIONS>
     const updatePageProps = (_update = {} as DeepPartial<PageItemsInterface>) => ({ ...state, page: { ...state.page, ..._update } } as ConfiguratorCtxInterface)
     const updateDotProps = (_update = {} as DeepPartial<DotItemsInterface>) => ({ ...state, dot: { ...state.dot, ..._update } } as ConfiguratorCtxInterface)
 
+    let newState
+
     switch (action.type) {
+        case ACTIONS.SET_INITIAL_CONFIG:
+            newState = action.payload as ConfiguratorCtxInterface
+            break;
+
         // Particles
         case ACTIONS.UPDATE_PARTICLES_DIRECTION:
-            return updateParticleProps({ direction: action.payload.direction })
+            newState = updateParticleProps({ direction: action.payload.direction })
+            break;
         case ACTIONS.UPDATE_PARTICLES_COUNT:
-            return updateParticleProps({ count: action.payload.count })
+            newState = updateParticleProps({ count: action.payload.count })
+            break;
         case ACTIONS.UPDATE_PARTICLES_SIZE:
-            return updateParticleProps({ size: action.payload.size })
+            newState = updateParticleProps({ size: action.payload.size })
+            break;
         case ACTIONS.UPDATE_PARTICLES_SPEED:
-            return updateParticleProps({ speed: action.payload.speed })
+            newState = updateParticleProps({ speed: action.payload.speed })
+            break;
         case ACTIONS.UPDATE_PARTICLES_COLOR:
-            return updateParticleProps({ color: action.payload.color })
+            newState = updateParticleProps({ color: action.payload.color })
+            break;
 
         // Page
         case ACTIONS.UPDATE_PAGE_SPIN_DIRECTION:
-            return updatePageProps({ spin: action.payload.spin })
+            newState = updatePageProps({ spin: action.payload.spin })
+            break;
         case ACTIONS.UPDATE_PAGE_SPIN_SPEED:
-            return updatePageProps({ speed: action.payload.speed })
+            newState = updatePageProps({ speed: action.payload.speed })
+            break;
         case ACTIONS.UPDATE_PAGE_COLOR:
-            return updatePageProps({ color: action.payload.color })
+            newState = updatePageProps({ color: action.payload.color })
+            break;
 
         // Dot
         case ACTIONS.UPDATE_DOT_STATE:
-            return updateDotProps({ enabled: action.payload.enabled })
+            newState = updateDotProps({ enabled: action.payload.enabled })
+            break;
         case ACTIONS.UPDATE_DOT_SIZE:
-            return updateDotProps({ size: action.payload.size })
+            newState = updateDotProps({ size: action.payload.size })
+            break;
         case ACTIONS.UPDATE_DOT_DISPLACEMENT_DELAY:
-            return updateDotProps({ displacementDelay: action.payload.displacementDelay })
+            newState = updateDotProps({ displacementDelay: action.payload.displacementDelay })
+            break;
         case ACTIONS.UPDATE_DOT_COLOR:
-            return updateDotProps({ color: action.payload.color })
+            newState = updateDotProps({ color: action.payload.color })
+            break;
         default:
             throw new Error(`Unhandled action type: ${action.type}`)
     }
+
+    saveToLocalStorage(newState)
+
+    return newState
 }
 
 const defaultValues: ConfiguratorCtxInterface = {
@@ -128,7 +165,8 @@ const defaultValues: ConfiguratorCtxInterface = {
         displacementDelay: 3,
         color: "#ff6666"
     },
-    dispatch: (_) => { }
+    dispatch: (_) => { },
+    // dispatchers: {}
 }
 
 const ConfiguratorContext = createContext<ConfiguratorCtxInterface | undefined>(undefined)
@@ -139,21 +177,30 @@ export function useConfiguratorContext() {
     const context = useContext(ConfiguratorContext)
 
     if (context === undefined) {
-        throw new Error("useConfiguratorContext must be within ConfiguratorContext")
+        throw new Error("Hook [useConfiguratorContext] must be within [ConfiguratorContext]")
     }
 
     return context
 }
 
+
+
 export default function ConfiguratorProvider({ children }: any) {
+    // let _defValues = defaultValues
+
     const [state, dispatch] = useReducer(reducer, defaultValues)
 
-    const updatePageColor = (v: string) => dispatch({ type: ACTIONS.UPDATE_PAGE_COLOR, payload: { color: v } })
+    useEffect(() => {
+        console.log("Use Effect", window);
+        dispatch({ type: ACTIONS.SET_INITIAL_CONFIG, payload: retrieveConfigFromLocalStorage() })
+    },[])
 
-    console.log(state);
-    
-
-    return <ConfiguratorContext.Provider value={{ ...state, dispatch }}>
+    return <ConfiguratorContext.Provider
+        value={{
+            ...state,
+            dispatch
+        }}
+    >
         {children}
     </ConfiguratorContext.Provider>
 }

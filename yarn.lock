@@ -1756,7 +1756,7 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pathseg@^1.2.0:
+pathseg@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.1.tgz#50b3fc4fc05c64f4a52f8c04156f6f3975b0df3c"
   integrity sha512-LtvemzPvcGamWBbNWJaIrgfUzpynXfwYrP6SSFVRhNHVcCaq6SVm4kRGJNuIV8qzBKgCN3fEXFZZ16YETFIXoA==
@@ -1937,13 +1937,13 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-tsparticles@^1.33.2:
-  version "1.33.2"
-  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.33.2.tgz#9ee505cfc910eeb78c2b109bc000c136031e5544"
-  integrity sha512-iNECndRxONkF6uWjhRKyWkz1V40kTL4us4r1eR1wn2mZAOwssNC2WUJIl/QATXyRrJss1tkYSTwfJWv8TAwB7w==
+react-tsparticles@^1.34.0:
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.34.0.tgz#3dbdd98d08951769a3ee02aaeee72ca451c93743"
+  integrity sha512-KG/9H8SIrL0e7S+pYz+cL36lLJzK3IWPLuIaDZdAOQK5321mtLp/tqmu+tnWXgaE1SQorV6Eh8V36Md8UI2E7A==
   dependencies:
     fast-deep-equal "^3.1.3"
-    tsparticles "^1.33.2"
+    tsparticles "^1.34.0"
 
 react@latest:
   version "17.0.2"
@@ -2307,12 +2307,12 @@ ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
   integrity sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
 
-tsparticles@^1.33.2:
-  version "1.33.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.33.2.tgz#956d7a08c026585a9d5cfe86b9834bbbdb82bf0c"
-  integrity sha512-/oLQWdwyaz9GXTl9j/xckdcIerVlbSlGVd6jT8h8QKPkkkMaqcLlVtVBMLF3542FaH2RUevceTIS7O2JncVdUA==
+tsparticles@^1.34.0:
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.34.0.tgz#1f87dea56f4abc44ab9286132162103899df99f4"
+  integrity sha512-7EIyI0339EZEzoUggqKBxkUDCvsM/YT89GyrPTSVcrHNd47SZ9bzTZFAWuTbhQrEiyJEL/np61t2BGOhJJK1Mg==
   optionalDependencies:
-    pathseg "^1.2.0"
+    pathseg "^1.2.1"
 
 tty-browserify@0.0.0:
   version "0.0.0"

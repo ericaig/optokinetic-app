@@ -1,0 +1,182 @@
+html,
+body {
+	margin: 0px;
+	padding: 0;
+	height: 100vh;
+	width: 100vw;
+}
+
+#tsparticles {
+	cursor: pointer;
+}
+
+#tsparticles canvas {
+	width: 100vw !important;
+	height: 100vh !important;
+}
+
+#tsparticles.spin canvas {
+	position: relative;
+	top: -55vh;
+	left: -10vw;
+	height: 250vh !important;
+	width: 250vh !important;
+}
+
+#tsparticles.spin-clockwise-10 canvas {
+	-webkit-animation: spinClockwise 10s linear infinite;
+	-moz-animation: spinClockwise 10s linear infinite;
+	animation: spinClockwise 10s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-10 canvas {
+	-webkit-animation: spinAntiClockwise 10s linear infinite;
+	-moz-animation: spinAntiClockwise 10s linear infinite;
+	animation: spinAntiClockwise 10s linear infinite;
+}
+
+#tsparticles.spin-clockwise-20 canvas {
+	-webkit-animation: spinClockwise 20s linear infinite;
+	-moz-animation: spinClockwise 20s linear infinite;
+	animation: spinClockwise 20s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-20 canvas {
+	-webkit-animation: spinAntiClockwise 20s linear infinite;
+	-moz-animation: spinAntiClockwise 20s linear infinite;
+	animation: spinAntiClockwise 20s linear infinite;
+}
+
+#tsparticles.spin-clockwise-30 canvas {
+	-webkit-animation: spinClockwise 30s linear infinite;
+	-moz-animation: spinClockwise 30s linear infinite;
+	animation: spinClockwise 30s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-30 canvas {
+	-webkit-animation: spinAntiClockwise 30s linear infinite;
+	-moz-animation: spinAntiClockwise 30s linear infinite;
+	animation: spinAntiClockwise 30s linear infinite;
+}
+
+#tsparticles.spin-clockwise-40 canvas {
+	-webkit-animation: spinClockwise 40s linear infinite;
+	-moz-animation: spinClockwise 40s linear infinite;
+	animation: spinClockwise 40s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-40 canvas {
+	-webkit-animation: spinAntiClockwise 40s linear infinite;
+	-moz-animation: spinAntiClockwise 40s linear infinite;
+	animation: spinAntiClockwise 40s linear infinite;
+}
+
+#tsparticles.spin-clockwise-50 canvas {
+	-webkit-animation: spinClockwise 50s linear infinite;
+	-moz-animation: spinClockwise 50s linear infinite;
+	animation: spinClockwise 50s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-50 canvas {
+	-webkit-animation: spinAntiClockwise 50s linear infinite;
+	-moz-animation: spinAntiClockwise 50s linear infinite;
+	animation: spinAntiClockwise 50s linear infinite;
+}
+
+#tsparticles.spin-clockwise-60 canvas {
+	-webkit-animation: spinClockwise 60s linear infinite;
+	-moz-animation: spinClockwise 60s linear infinite;
+	animation: spinClockwise 60s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-60 canvas {
+	-webkit-animation: spinAntiClockwise 60s linear infinite;
+	-moz-animation: spinAntiClockwise 60s linear infinite;
+	animation: spinAntiClockwise 60s linear infinite;
+}
+
+#tsparticles.spin-clockwise-70 canvas {
+	-webkit-animation: spinClockwise 70s linear infinite;
+	-moz-animation: spinClockwise 70s linear infinite;
+	animation: spinClockwise 70s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-70 canvas {
+	-webkit-animation: spinAntiClockwise 70s linear infinite;
+	-moz-animation: spinAntiClockwise 70s linear infinite;
+	animation: spinAntiClockwise 70s linear infinite;
+}
+
+#tsparticles.spin-clockwise-80 canvas {
+	-webkit-animation: spinClockwise 80s linear infinite;
+	-moz-animation: spinClockwise 80s linear infinite;
+	animation: spinClockwise 80s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-80 canvas {
+	-webkit-animation: spinAntiClockwise 80s linear infinite;
+	-moz-animation: spinAntiClockwise 80s linear infinite;
+	animation: spinAntiClockwise 80s linear infinite;
+}
+
+#tsparticles.spin-clockwise-90 canvas {
+	-webkit-animation: spinClockwise 90s linear infinite;
+	-moz-animation: spinClockwise 90s linear infinite;
+	animation: spinClockwise 90s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-90 canvas {
+	-webkit-animation: spinAntiClockwise 90s linear infinite;
+	-moz-animation: spinAntiClockwise 90s linear infinite;
+	animation: spinAntiClockwise 90s linear infinite;
+}
+
+#tsparticles.spin-clockwise-100 canvas {
+	-webkit-animation: spinClockwise 100s linear infinite;
+	-moz-animation: spinClockwise 100s linear infinite;
+	animation: spinClockwise 100s linear infinite;
+}
+
+#tsparticles.spin-anti-clockwise-100 canvas {
+	-webkit-animation: spinAntiClockwise 100s linear infinite;
+	-moz-animation: spinAntiClockwise 100s linear infinite;
+	animation: spinAntiClockwise 100s linear infinite;
+}
+
+@-moz-keyframes spinClockwise {
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes spinClockwise {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spinClockwise {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes spinAntiClockwise {
+	100% {
+		-moz-transform: rotate(-360deg);
+	}
+}
+
+@-webkit-keyframes spinAntiClockwise {
+	100% {
+		-webkit-transform: rotate(-360deg);
+	}
+}
+
+@keyframes spinAntiClockwise {
+	100% {
+		-webkit-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+}
