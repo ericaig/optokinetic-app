@@ -7,7 +7,7 @@
  * 
  * const [] = useReducer(reducer, [])
  */
-export interface ReducerAction<T = string, P = { [key: string]: any }> {
+export default interface ReducerAction<T = string, P = { [key: string]: any }> {
     type: T,
     payload: P
 }

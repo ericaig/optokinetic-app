@@ -22,7 +22,7 @@
     "react": "latest",
     "react-color-palette": "^6.1.0",
     "react-dom": "latest",
-    "react-tsparticles": "^1.33.2"
+    "react-tsparticles": "^1.34.0"
   },
   "devDependencies": {
     "@types/node": "latest",

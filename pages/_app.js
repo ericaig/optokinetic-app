@@ -33,12 +33,14 @@ function MyApp(props) {
     </CacheProvider>
   )
 
-  if (router.pathname.startsWith(Routes.DASHBOARD)) {
+  if (Routes.shouldUseDashboardTemplate(router.pathname)) {
     return _renderPage(
       <Dashboard>
         <Component {...pageProps} />
       </Dashboard>
     )
+  } else {
+    console.log(`Can't use dashboard template for route: ${router.pathname}`);
   }
 
   return _renderPage(<Component {...pageProps} />);

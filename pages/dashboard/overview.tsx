@@ -5,11 +5,13 @@ import AppToolbar from "@components/dashboard/AppToolbar";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 export default function Overview() {
+    const pageTitle = "Overview"
+
     return <>
-        <AppTitle title="Overview" />
+        <AppTitle title={pageTitle} />
         <AppToolbar reqs={{
             title: "Good Morning, Eric",
-            superscriptTitle: "OVERWIEW",
+            superscriptTitle: pageTitle.toUpperCase(),
             subtitle: "Here's what's happening with your projects today",
             showBreadcrumb: false,
             actions: [
