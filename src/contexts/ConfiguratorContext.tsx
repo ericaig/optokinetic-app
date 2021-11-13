@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, Dispatch, useEffect } from "react";
-// import ReducerAction from "@interfaces/reducer";
 import { DIRECTIONS, SPIN_DIRECTIONS } from "@enums/directions";
 import ReducerAction from "@interfaces/reducer";
+import { DeepPartial } from "@interfaces/deep-partial";
 
 const STORAGE_KEY = "tmpConfig";
 
@@ -62,11 +62,6 @@ interface DotItemsInterface {
     color: string
 }
 
-// https://stackoverflow.com/a/40076355/3410660
-type DeepPartial<T> = {
-    [P in keyof T]?: T[P];
-}
-
 interface ConfiguratorCtxInterface {
     particles: ParticlesItemsInterface,
     page: PageItemsInterface,
@@ -79,7 +74,7 @@ const saveToLocalStorage = (state: ConfiguratorCtxInterface) => {
     return window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state || {}))
 }
 
-const retrieveConfigFromLocalStorage = () => {
+export const retrieveConfigFromLocalStorage = () => {
     const res = window.localStorage.getItem(STORAGE_KEY)
     return (res ? JSON.parse(res) : defaultValues) as ConfiguratorCtxInterface
 }
@@ -183,9 +178,7 @@ export function useConfiguratorContext() {
     return context
 }
 
-
-
-export default function ConfiguratorProvider({ children }: any) {
+export default function ConfiguratorProvider({ children, initialValues = {} }: any) {
     // let _defValues = defaultValues
 
     const [state, dispatch] = useReducer(reducer, defaultValues)

@@ -9,7 +9,7 @@ import theme from '@src/themes/theme';
 import createEmotionCache from '@src/createEmotionCache';
 import Dashboard from '@components/dashboard/App';
 import NProgress from '@components/NProgress';
-import Routes from '@lib/routes';
+import { shouldUseDashboardTemplate } from '@lib/routes';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -33,7 +33,7 @@ function MyApp(props) {
     </CacheProvider>
   )
 
-  if (Routes.shouldUseDashboardTemplate(router.pathname)) {
+  if (shouldUseDashboardTemplate(router.pathname)) {
     return _renderPage(
       <Dashboard>
         <Component {...pageProps} />
