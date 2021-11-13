@@ -3,7 +3,7 @@ import { Paper, Tab, Tabs, Grid, Box, Fade } from '@material-ui/core';
 import PageControls from './PageControls';
 import ParticlesControls from './ParticlesControls';
 import DotControls from './DotControls';
-import ConfiguratorProvider from '@contexts/ConfiguratorContext';
+import ConfiguratorProvider, { ACTIONS, retrieveConfigFromLocalStorage, useConfiguratorContext } from '@contexts/ConfiguratorContext';
 
 enum TabEnums {
   PAGE = 0,
@@ -31,8 +31,17 @@ export default function Configurator() {
   const [selectedTab, setSelectedTab] = useState(TabEnums.PAGE);
   const handleChange = (_: any, _value: number) => setSelectedTab(_value)
 
+  let configurations = {}
+
+  useEffect(() => {
+    configurations = retrieveConfigFromLocalStorage()
+
+    console.log(configurations);
+    
+  }, [])
+
   return (
-    <ConfiguratorProvider>
+    <ConfiguratorProvider initialValues={configurations}>
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: (theme) => theme.spacing(3) }}>
           <Tabs
@@ -70,4 +79,15 @@ export default function Configurator() {
       </Box>
     </ConfiguratorProvider>
   );
+}
+
+
+Configurator.getServerSideProps = () => {
+  const config = retrieveConfigFromLocalStorage()
+
+  console.log("Initial Props", config);
+  
+
+
+  return { config };
 }
