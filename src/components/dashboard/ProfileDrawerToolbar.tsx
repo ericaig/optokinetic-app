@@ -1,6 +1,6 @@
 import React from "react"
-import { Toolbar, Tooltip, Grid, Avatar, Typography } from "@material-ui/core"
-import { styled } from '@material-ui/core/styles';
+import { Toolbar, Tooltip, Grid, Avatar, Typography } from "@mui/material"
+import { styled } from '@mui/material/styles';
 import Link from '../Link';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({

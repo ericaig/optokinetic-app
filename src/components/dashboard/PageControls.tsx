@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled } from "@material-ui/core"
-import RotateRightOutlinedIcon from '@material-ui/icons/RotateRightOutlined';
-import ScreenLockRotationOutlinedIcon from '@material-ui/icons/ScreenLockRotationOutlined';
-import RotateLeftOutlinedIcon from '@material-ui/icons/RotateLeftOutlined';
+import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled } from "@mui/material"
+import RotateRightOutlinedIcon from '@mui/icons-material/RotateRightOutlined';
+import ScreenLockRotationOutlinedIcon from '@mui/icons-material/ScreenLockRotationOutlined';
+import RotateLeftOutlinedIcon from '@mui/icons-material/RotateLeftOutlined';
 import Divider from "./Divider";
 import ColorPicker from "./ColorPicker";
 import { ACTIONS, useConfiguratorContext } from "@contexts/ConfiguratorContext";

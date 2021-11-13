@@ -1,40 +1,75 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "allowJs": true,
-        "allowSyntheticDefaultImports": true,
-        "jsx": "preserve",
-        "lib": ["dom", "es2017"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "preserveConstEnums": true,
-        "removeComments": false,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strict": true,
-        "target": "esnext",
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "paths": {
-          "@themes/*": ["src/themes/*"],
-          "@lib/*": ["src/lib/*"],
-          "@assets/*": ["src/assets/*"],
-          "@config/*": ["src/config/*"],
-          "@components/*": ["src/components/*"],
-          "@contexts/*": ["src/contexts/*"],
-          "@utils/*": ["src/utils/*"],
-          "@store/*": ["src/store/*"],
-          "@hooks/*": ["src/hooks/*"],
-          "@interfaces/*": ["src/interfaces/*"],
-          "@enums/*": ["src/enums/*"],
-          "@src/*": ["src/*"],
-        }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "paths": {
+      "@themes/*": [
+        "src/themes/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@contexts/*": [
+        "src/contexts/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@enums/*": [
+        "src/enums/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ]
     },
-    "exclude": ["node_modules"],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js"
+  ]
 }

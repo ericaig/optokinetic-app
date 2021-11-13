@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import LaunchIcon from '@material-ui/icons/Launch';
+import { Button } from "@mui/material";
+import LaunchIcon from '@mui/icons-material/Launch';
 import AppTitle from "@components/dashboard/AppTitle";
 import AppToolbar from "@components/dashboard/AppToolbar";
 import Configurator from "@components/dashboard/Configurator";

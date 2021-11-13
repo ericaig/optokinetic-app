@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { alpha, Divider, IconButton, Menu, MenuItem, Paper, styled, Table as MuiTable, TableBody, TableCell, TableCellProps, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
-import { MoreHoriz } from '@material-ui/icons';
-import EditIcon from '@material-ui/icons/Edit';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import { alpha, Divider, IconButton, Menu, MenuItem, Paper, styled, Table as MuiTable, TableBody, TableCell, TableCellProps, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
+import { MoreHoriz } from '@mui/icons-material';
+import EditIcon from '@mui/icons-material/Edit';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export interface Column {
     field: string;
@@ -21,49 +20,6 @@ interface TablePropsInterface {
     rowsPerPage?: number,
     currentPage?: number,
 }
-
-const StyledMenu = styled((props) => (
-    <Menu
-      elevation={0}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={false}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    '& .MuiPaper-root': {
-      borderRadius: 6,
-      marginTop: theme.spacing(1),
-      minWidth: 180,
-      color:
-        theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
-      boxShadow:
-        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-      '& .MuiMenu-list': {
-        padding: '4px 0',
-      },
-      '& .MuiMenuItem-root': {
-        '& .MuiSvgIcon-root': {
-          fontSize: 18,
-          color: theme.palette.text.secondary,
-          marginRight: theme.spacing(1.5),
-        },
-        '&:active': {
-          backgroundColor: alpha(
-            theme.palette.primary.main,
-            theme.palette.action.selectedOpacity,
-          ),
-        },
-      },
-    },
-  }));
-  
 
 export default function Table({ rowsPerPage: rpp = 10, currentPage = 0, rows, columns }: TablePropsInterface) {
     const [page, setPage] = React.useState(currentPage);
@@ -82,10 +38,10 @@ export default function Table({ rowsPerPage: rpp = 10, currentPage = 0, rows, co
 
 
     const handleClick = (event: any) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
 
     return (
@@ -113,9 +69,9 @@ export default function Table({ rowsPerPage: rpp = 10, currentPage = 0, rows, co
                     <TableBody>
                         {rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row) => {
+                            .map((row, index) => {
                                 return (
-                                    <TableRow hover tabIndex={-1} key={row.code}>
+                                    <TableRow hover tabIndex={-1} key={index}>
                                         {columns.map((column) => {
                                             const value = row[column.field];
                                             return (
@@ -130,21 +86,28 @@ export default function Table({ rowsPerPage: rpp = 10, currentPage = 0, rows, co
                                             <IconButton
                                                 color="primary"
                                                 aria-label="actions"
-                                                aria-controls="demo-customized-menu"
+                                                aria-controls="row-options"
                                                 aria-haspopup="true"
                                                 aria-expanded={open ? 'true' : undefined}
                                                 onClick={handleClick}
-                                            >
+                                                size="large">
                                                 <MoreHoriz />
                                             </IconButton>
 
-                                            <StyledMenu
-                                                MenuListProps={{
-                                                    'aria-labelledby': 'demo-customized-button',
-                                                }}
+                                            <Menu
                                                 anchorEl={anchorEl}
                                                 open={open}
                                                 onClose={handleClose}
+                                                id="row-options"
+                                                keepMounted
+                                                anchorOrigin={{
+                                                    vertical: 'bottom',
+                                                    horizontal: 'right',
+                                                }}
+                                                transformOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'right',
+                                                }}
                                             >
                                                 <MenuItem onClick={handleClose} disableRipple>
                                                     <EditIcon />
@@ -163,7 +126,7 @@ export default function Table({ rowsPerPage: rpp = 10, currentPage = 0, rows, co
                                                     <MoreHorizIcon />
                                                     More
                                                 </MenuItem>
-                                            </StyledMenu>
+                                            </Menu>
                                         </TableCell>
                                     </TableRow>
                                 );
