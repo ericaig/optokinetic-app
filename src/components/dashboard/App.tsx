@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import AppBar from './AppBar';
 import AppDrawer from './AppDrawer'
 

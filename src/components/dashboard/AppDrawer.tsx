@@ -1,10 +1,10 @@
 import React, { FC } from "react"
-import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button, SvgIcon } from "@material-ui/core"
-import { styled } from '@material-ui/core/styles';
-import SettingsIcon from '@material-ui/icons/Settings';
-import CategoryIcon from '@material-ui/icons/Category';
-import PeopleIcon from '@material-ui/icons/People';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
+import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button, SvgIcon } from "@mui/material"
+import { styled } from '@mui/material/styles';
+import SettingsIcon from '@mui/icons-material/Settings';
+import CategoryIcon from '@mui/icons-material/Category';
+import PeopleIcon from '@mui/icons-material/People';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
 import Routes from "@lib/routes";

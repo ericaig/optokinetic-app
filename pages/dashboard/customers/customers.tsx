@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { Button } from "@mui/material";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AppTitle from "@components/dashboard/AppTitle";
 import AppToolbar from "@components/dashboard/AppToolbar";
 import Link from "@components/Link";

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import theme from '@src/themes/theme';
 import createEmotionCache from '@src/createEmotionCache';
@@ -25,11 +25,13 @@ function MyApp(props) {
         <title>Optokinetic</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <NProgress showSpinner={false} />
-        {_page}
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <NProgress showSpinner={false} />
+          {_page}
+        </ThemeProvider>
+      </StyledEngineProvider>
     </CacheProvider>
   )
 

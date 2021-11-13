@@ -1,5 +1,5 @@
 import React, { useEffect, useState, forwardRef } from 'react';
-import { Paper, Tab, Tabs, Grid, Box, Fade } from '@material-ui/core';
+import { Paper, Tab, Tabs, Grid, Box, Fade } from '@mui/material';
 import PageControls from './PageControls';
 import ParticlesControls from './ParticlesControls';
 import DotControls from './DotControls';

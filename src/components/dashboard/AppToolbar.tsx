@@ -1,5 +1,5 @@
-import { Toolbar, Typography, Stack } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { Toolbar, Typography, Stack } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 import AppBreadcrumbs from './AppBreadcrumbs';
 
@@ -39,7 +39,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
         paddingLeft: 0,
         paddingRight: 0,
     },
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('xl')]: {
         alignItems: 'start',
         flexDirection: 'column',
         justifyContent: 'start',
@@ -48,7 +48,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 const ActionsContainer = styled(Stack)(({ theme }) => ({
-    alignSelf: "center",
+    alignSelf: "end",
     [theme.breakpoints.down('lg')]: {
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(1),

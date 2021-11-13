@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Slider, Typography, styled } from '@material-ui/core';
+import { Paper, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Slider, Typography, styled } from '@mui/material';
 import Divider from './Divider';
 import ColorPicker from './ColorPicker';
 import { ACTIONS, useConfiguratorContext } from '@contexts/ConfiguratorContext';

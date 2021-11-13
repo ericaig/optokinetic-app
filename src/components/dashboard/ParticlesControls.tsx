@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled, Box, Grid, Button } from "@material-ui/core"
-import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
-import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
-import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
-import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
+import { FormControl, FormLabel, Slider, ToggleButton, ToggleButtonGroup, Typography, Paper, styled, Box, Grid, Button } from "@mui/material"
+import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
+import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import Divider from "./Divider";
 import ColorPicker from "./ColorPicker";
 import { useConfiguratorContext, ACTIONS } from "@contexts/ConfiguratorContext";

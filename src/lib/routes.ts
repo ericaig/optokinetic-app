@@ -11,6 +11,8 @@ const Routes = {
     CUSTOMER_EDIT: `${DASHBOARD}/customers`,
 }
 
+export default Routes
+
 export function shouldUseDashboardTemplate(route: string) {
     /**
      * The routes in this array are exempted from using Dashboard template
@@ -20,5 +22,3 @@ export function shouldUseDashboardTemplate(route: string) {
 
     return route.startsWith(Routes.DASHBOARD) && !exceptions.includes(route)
 }
-
-export default Routes
