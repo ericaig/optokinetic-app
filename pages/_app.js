@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import theme from '@src/themes/theme';
 import createEmotionCache from '@src/createEmotionCache';
 import Dashboard from '@components/dashboard/App';
 import NProgress from '@components/NProgress';
-import Routes from '@lib/routes';
+import { shouldUseDashboardTemplate } from '@utils/routes';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,20 +25,24 @@ function MyApp(props) {
         <title>Optokinetic</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <NProgress showSpinner={false} />
-        {_page}
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <NProgress showSpinner={false} />
+          {_page}
+        </ThemeProvider>
+      </StyledEngineProvider>
     </CacheProvider>
   )
 
-  if (router.pathname.startsWith(Routes.DASHBOARD)) {
+  if (shouldUseDashboardTemplate(router.pathname)) {
     return _renderPage(
       <Dashboard>
         <Component {...pageProps} />
       </Dashboard>
     )
+  } else {
+    console.log(`Can't use dashboard template for route: ${router.pathname}`);
   }
 
   return _renderPage(<Component {...pageProps} />);

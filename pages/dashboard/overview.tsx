@@ -1,15 +1,17 @@
 import React from "react";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography } from "@mui/material";
 import AppTitle from "@components/dashboard/AppTitle";
 import AppToolbar from "@components/dashboard/AppToolbar";
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 export default function Overview() {
+    const pageTitle = "Overview"
+
     return <>
-        <AppTitle title="Overview" />
+        <AppTitle title={pageTitle} />
         <AppToolbar reqs={{
             title: "Good Morning, Eric",
-            superscriptTitle: "OVERWIEW",
+            superscriptTitle: pageTitle.toUpperCase(),
             subtitle: "Here's what's happening with your projects today",
             showBreadcrumb: false,
             actions: [

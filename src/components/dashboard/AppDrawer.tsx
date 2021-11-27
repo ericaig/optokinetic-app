@@ -1,12 +1,13 @@
 import React, { FC } from "react"
-import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button } from "@material-ui/core"
-import { styled } from '@material-ui/core/styles';
-import SettingsIcon from '@material-ui/icons/Settings';
-import CategoryIcon from '@material-ui/icons/Category';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
+import { Box, Divider, Drawer, List, ListItem, ListSubheader as MuiListSubheader, Button, SvgIcon } from "@mui/material"
+import { styled } from '@mui/material/styles';
+import SettingsIcon from '@mui/icons-material/Settings';
+import CategoryIcon from '@mui/icons-material/Category';
+import PeopleIcon from '@mui/icons-material/People';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 
 interface AppDrawerProps {
     reqs: {
@@ -41,6 +42,45 @@ const ListSubheader = styled(MuiListSubheader)(({ theme }) => ({
     fontSize: theme.typography.caption.fontSize
 }));
 
+type SideMenu = {
+    href: keyof typeof Routes,
+    title: string,
+    icon: typeof SvgIcon,
+}
+
+const SIDE_MENU_GROUP: { title: string, items: SideMenu[] }[] = [
+    {
+        title: "General",
+        items: [
+            {
+                href: "DASHBOARD",
+                title: "Overview",
+                icon: CategoryIcon,
+            },
+            {
+                href: "ANALYTICS",
+                title: "Analytics",
+                icon: InsertChartIcon,
+            },
+            {
+                href: "CONFIGURATOR",
+                title: "Configurator",
+                icon: SettingsIcon,
+            },
+        ]
+    },
+    {
+        title: "Management",
+        items: [
+            {
+                href: "CUSTOMERS_LIST",
+                title: "Customers",
+                icon: PeopleIcon,
+            },
+        ]
+    }
+]
+
 const AppDrawer: FC<AppDrawerProps> = (props) => {
     const { reqs: { drawerWidth, mobileOpen, handleDrawerToggle } } = props
 
@@ -53,94 +93,52 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
             <Divider />
 
             <MenuGroup>
-                <List
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                    aria-label="General"
-                    subheader={
-                        <ListSubheader disableGutters disableSticky>
-                            General
-                        </ListSubheader>
-                    }
-                >
-                    <ListItem disablePadding disableGutters dense>
-                        <Button
-                            startIcon={<CategoryIcon />}
-                            key="general-analytics-1"
-                            href={Routes.DASHBOARD}
-                            LinkComponent={Link}
-                            aria-label="Overview"
-                            variant="text"
-                            fullWidth
-                            className="side-menu-item"
-                            onClick={handleDrawerToggle}
-                            sx={{
-                                padding: (theme) => {
-                                    const _spX = theme.spacing(1)
-                                    const _spY = theme.spacing(2 * .75)
-                                    // 12px 8px 12px 16px
-                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
-                                },
-                                justifyContent: "start",
-                                textTransform: "inherit",
-                            }}
-                        >
-                            Overview
-                        </Button>
-                    </ListItem>
-                    <ListItem disablePadding disableGutters dense>
-                        <Button
-                            startIcon={<InsertChartIcon />}
-                            key="general-analytics-1"
-                            href={Routes.ANALYTICS}
-                            LinkComponent={Link}
-                            aria-label="Analytics"
-                            variant="text"
-                            fullWidth
-                            className="side-menu-item"
-                            onClick={handleDrawerToggle}
-                            sx={{
-                                padding: (theme) => {
-                                    const _spX = theme.spacing(1)
-                                    const _spY = theme.spacing(2 * .75)
-                                    // 12px 8px 12px 16px
-                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
-                                },
-                                justifyContent: "start",
-                                textTransform: "inherit",
-                            }}
-                        >
-                            Analytics
-                        </Button>
-                    </ListItem>
-                    <ListItem disablePadding disableGutters dense>
-                        <Button
-                            startIcon={<SettingsIcon />}
-                            key="general-analytics-1"
-                            href={Routes.CONFIGURATOR}
-                            LinkComponent={Link}
-                            aria-label="Configurator"
-                            variant="text"
-                            fullWidth
-                            className="side-menu-item"
-                            onClick={handleDrawerToggle}
-                            sx={{
-                                padding: (theme) => {
-                                    const _spX = theme.spacing(1)
-                                    const _spY = theme.spacing(2 * .75)
-                                    // 12px 8px 12px 16px
-                                    return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
-                                },
-                                justifyContent: "start",
-                                textTransform: "inherit",
-                            }}
-                        >
-                            Configurator
-                        </Button>
-                    </ListItem>
-                </List>
+                {SIDE_MENU_GROUP.map(({ title, items }, index) => {
+                    const groupKey = `${title.toLowerCase()}-${index}`
+
+                    return <List
+                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                        aria-label="General"
+                        key={groupKey}
+                        subheader={
+                            <ListSubheader disableGutters disableSticky>
+                                {title}
+                            </ListSubheader>
+                        }
+                    >
+                        {items.map((item, index2) => {
+                            const itemKey = `${groupKey}-${item.title.toLowerCase()}-${index2}`
+
+                            return <ListItem disablePadding disableGutters dense key={itemKey}>
+                                <Button
+                                    startIcon={<item.icon />}
+                                    href={Routes[item.href]}
+                                    LinkComponent={Link}
+                                    aria-label={item.title}
+                                    variant="text"
+                                    fullWidth
+                                    className="side-menu-item"
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        padding: (theme) => {
+                                            const _spX = theme.spacing(1)
+                                            const _spY = theme.spacing(2 * .75)
+                                            // 12px 8px 12px 16px
+                                            return `${_spY} ${_spX} ${_spY} ${theme.spacing(2)}`
+                                        },
+                                        justifyContent: "start",
+                                        textTransform: "inherit",
+                                    }}
+                                >
+                                    {item.title}
+                                </Button>
+                            </ListItem>
+                        })}
+                    </List>
+                })}
             </MenuGroup>
 
-        </DrawerContainer>
+        </DrawerContainer >
     )
 
     return (

@@ -1,12 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { styled } from '@material-ui/core/styles';
-import { Breadcrumbs as MuiBreadcrumbs, Typography } from "@material-ui/core";
-import HomeIcon from '@material-ui/icons/HomeOutlined';
-import WhatshotIcon from '@material-ui/icons/WhatshotOutlined';
-import NavigateNextIcon from '@material-ui/icons/NavigateNextOutlined';
+import { styled } from '@mui/material/styles';
+import { Breadcrumbs as MuiBreadcrumbs, Typography } from "@mui/material";
+import HomeIcon from '@mui/icons-material/HomeOutlined';
+import WhatshotIcon from '@mui/icons-material/WhatshotOutlined';
+import NavigateNextIcon from '@mui/icons-material/NavigateNextOutlined';
 import Link from '../Link';
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 
 const AppBreadCrumbs = styled('div')(({ theme }) => ({
     paddingTop: theme.spacing(1),

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
-import Popover from '@material-ui/core/Popover';
+import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import Popover from '@mui/material/Popover';
 import { ColorPicker as ReactColorPicker, useColor, Color } from "react-color-palette";
 
 import "react-color-palette/lib/css/styles.css";
