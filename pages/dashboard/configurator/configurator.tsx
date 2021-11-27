@@ -4,7 +4,7 @@ import AppTitle from "@components/dashboard/AppTitle";
 import AppToolbar from "@components/dashboard/AppToolbar";
 import Configurator from "@components/dashboard/Configurator";
 import Link from "@components/Link";
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 
 export default function ConfiguratorPage() {
     const pageTitle = "Configurator"

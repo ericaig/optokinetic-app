@@ -9,7 +9,7 @@ import theme from '@src/themes/theme';
 import createEmotionCache from '@src/createEmotionCache';
 import Dashboard from '@components/dashboard/App';
 import NProgress from '@components/NProgress';
-import { shouldUseDashboardTemplate } from '@lib/routes';
+import { shouldUseDashboardTemplate } from '@utils/routes';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

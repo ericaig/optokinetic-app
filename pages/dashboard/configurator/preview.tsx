@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Particles from "react-tsparticles";
 import AppTitle from "@components/dashboard/AppTitle";
-import particles from '@lib/particles';
+import particles from '@utils/particles';
 
 // import '@src/styles/particles.css'
 

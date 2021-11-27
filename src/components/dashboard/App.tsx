@@ -26,6 +26,7 @@ export default function App({ children }: any) {
             <AppDrawer reqs={{ drawerWidth, mobileOpen, handleDrawerToggle, }} />
 
             <Main component="main">
+                <div id="portal-root"></div>
                 {children}
             </Main>
         </Box>

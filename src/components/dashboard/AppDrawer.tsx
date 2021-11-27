@@ -7,7 +7,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 
 interface AppDrawerProps {
     reqs: {
