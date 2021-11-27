@@ -27,9 +27,6 @@
       "@themes/*": [
         "src/themes/*"
       ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
       "@assets/*": [
         "src/assets/*"
       ],

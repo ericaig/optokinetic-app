@@ -1,16 +1,20 @@
+import * as React from 'react';
 import { Button } from "@mui/material";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AppTitle from "@components/dashboard/AppTitle";
 import AppToolbar from "@components/dashboard/AppToolbar";
 import Link from "@components/Link";
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 import Table, { Column } from "@components/dashboard/Table";
+import { DeleteOutlined, EditOutlined, FileCopyOutlined } from "@mui/icons-material";
+import okCancelAlertDialog from '@utils/OkCancelAlertDialog';
 
 const columns: Column[] = [
     {
         field: 'surnames',
         label: 'Surnames',
         minWidth: 170,
+        fontWeight: 700,
     },
     {
         field: 'name',
@@ -57,6 +61,45 @@ const rows = [
 export default function CustomersPage() {
     const pageTitle = "Customers"
 
+    const alert = okCancelAlertDialog()
+
+    const deleteAlert = okCancelAlertDialog({
+        title: "GEEEENERRIC",
+        body: "Are you sure you want to GEEEENERRIC this item?",
+        okLabel: "Delete",
+        isDestructiveAction: true,
+        backdropDismissible: false,
+    })
+
+    const handleDelete = (resource: any) => {
+        deleteAlert.present({
+            ...deleteAlert.props,
+            okCallback: async () => {
+                console.log("GEEEENERRIC", resource)
+            },
+        })
+    }
+
+    const handleEdit = (resource: any) => {
+        alert.present({
+            title: "EDIT",
+            body: "Are you sure you want to edit this item?",
+            okCallback: async () => {
+                console.log("EDIT", resource)
+            },
+        })
+    }
+
+    const handleDuplicate = (resource: any) => {
+        alert.present({
+            title: "Duplicate",
+            body: "Are you sure you want to duplicate this item?",
+            okCallback: async () => {
+                console.log("DUPLICATE", resource)
+            },
+        })
+    }
+
     return (
         <>
             <AppTitle title={pageTitle} />
@@ -66,10 +109,10 @@ export default function CustomersPage() {
                     <Button
                         startIcon={<PersonAddIcon />}
                         variant="contained"
-                        disableElevation
                         LinkComponent={Link}
                         href={Routes.CUSTOMER_CREATE}
                         target="_blank"
+                        disableElevation
                     >
                         {"Add new"}
                     </Button>
@@ -78,7 +121,29 @@ export default function CustomersPage() {
             <Table
                 columns={columns}
                 rows={rows}
+                rowActions={[
+                    {
+                        icon: EditOutlined,
+                        onClick: handleEdit,
+                        title: "Edit",
+                    },
+                    {
+                        icon: FileCopyOutlined,
+                        onClick: handleDuplicate,
+                        title: "Duplicate",
+                        dividerAfter: true,
+                    },
+                    {
+                        icon: DeleteOutlined,
+                        onClick: handleDelete,
+                        title: "Delete",
+                        destructive: true,
+                    },
+                ]}
             />
+
+            {alert.output}
+            {deleteAlert.output}
         </>
     )
 }

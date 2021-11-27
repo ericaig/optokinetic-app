@@ -6,7 +6,7 @@ import HomeIcon from '@mui/icons-material/HomeOutlined';
 import WhatshotIcon from '@mui/icons-material/WhatshotOutlined';
 import NavigateNextIcon from '@mui/icons-material/NavigateNextOutlined';
 import Link from '../Link';
-import Routes from "@lib/routes";
+import Routes from "@utils/routes";
 
 const AppBreadCrumbs = styled('div')(({ theme }) => ({
     paddingTop: theme.spacing(1),
