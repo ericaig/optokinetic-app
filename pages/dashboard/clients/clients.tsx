@@ -7,7 +7,7 @@ import Link from "@components/Link";
 import Routes from "@utils/routes";
 import Table, { Column } from "@components/dashboard/Table";
 import { DeleteOutlined, EditOutlined, FileCopyOutlined } from "@mui/icons-material";
-import okCancelAlertDialog from '@utils/OkCancelAlertDialog';
+import okCancelAlertDialog from '@utils/okCancelAlertDialog';
 
 const columns: Column[] = [
     {
@@ -58,8 +58,8 @@ const rows = [
     createData('Feil Schuster', 'Mateo', 210147125),
 ];
 
-export default function CustomersPage() {
-    const pageTitle = "Customers"
+export default function ClientsListPage() {
+    const pageTitle = "Clients"
 
     const alert = okCancelAlertDialog()
 
@@ -110,8 +110,7 @@ export default function CustomersPage() {
                         startIcon={<PersonAddIcon />}
                         variant="contained"
                         LinkComponent={Link}
-                        href={Routes.CUSTOMER_CREATE}
-                        target="_blank"
+                        href={Routes.clientCreate}
                         disableElevation
                     >
                         {"Add new"}

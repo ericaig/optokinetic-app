@@ -5,9 +5,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CategoryIcon from '@mui/icons-material/Category';
 import PeopleIcon from '@mui/icons-material/People';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
+import useTranslation from 'next-translate/useTranslation'
 import ProfileDrawerToolbar from './ProfileDrawerToolbar';
 import Link from '../Link';
 import Routes from "@utils/routes";
+
 
 interface AppDrawerProps {
     reqs: {
@@ -48,41 +50,42 @@ type SideMenu = {
     icon: typeof SvgIcon,
 }
 
-const SIDE_MENU_GROUP: { title: string, items: SideMenu[] }[] = [
-    {
-        title: "General",
-        items: [
-            {
-                href: "DASHBOARD",
-                title: "Overview",
-                icon: CategoryIcon,
-            },
-            {
-                href: "ANALYTICS",
-                title: "Analytics",
-                icon: InsertChartIcon,
-            },
-            {
-                href: "CONFIGURATOR",
-                title: "Configurator",
-                icon: SettingsIcon,
-            },
-        ]
-    },
-    {
-        title: "Management",
-        items: [
-            {
-                href: "CUSTOMERS_LIST",
-                title: "Customers",
-                icon: PeopleIcon,
-            },
-        ]
-    }
-]
-
 const AppDrawer: FC<AppDrawerProps> = (props) => {
     const { reqs: { drawerWidth, mobileOpen, handleDrawerToggle } } = props
+    const { t } = useTranslation('common')
+
+    const SIDE_MENU_GROUP: { title: string, items: SideMenu[] }[] = [
+        {
+            title: "General",
+            items: [
+                {
+                    href: "dashboard",
+                    title: "Overview",
+                    icon: CategoryIcon,
+                },
+                {
+                    href: "analytics",
+                    title: "Analytics",
+                    icon: InsertChartIcon,
+                },
+                {
+                    href: "configurator",
+                    title: "Configurator",
+                    icon: SettingsIcon,
+                },
+            ]
+        },
+        {
+            title: "Management",
+            items: [
+                {
+                    href: "clientsList",
+                    title: t("clients"),
+                    icon: PeopleIcon,
+                },
+            ]
+        }
+    ]
 
     const handleMobileMenuToggler = () => (mobileOpen && handleDrawerToggle())
 
@@ -112,7 +115,7 @@ const AppDrawer: FC<AppDrawerProps> = (props) => {
                             return <ListItem disablePadding disableGutters dense key={itemKey}>
                                 <Button
                                     startIcon={<item.icon />}
-                                    href={Routes[item.href]}
+                                    href={`${Routes[item.href]}`}
                                     LinkComponent={Link}
                                     aria-label={item.title}
                                     variant="text"

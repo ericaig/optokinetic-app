@@ -17,11 +17,11 @@ const breadcrumbPathMap = {
         icon: <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
         name: "Home"
     },
-    [Routes.DASHBOARD]: {
+    [Routes.dashboard]: {
         icon: <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
         name: "Home"
     },
-    [Routes.ANALYTICS]: {
+    [Routes.analytics]: {
         icon: <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
         name: "Analytics"
     },

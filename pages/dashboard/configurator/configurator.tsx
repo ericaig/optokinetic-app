@@ -20,7 +20,7 @@ export default function ConfiguratorPage() {
                         variant="contained"
                         disableElevation
                         LinkComponent={Link}
-                        href={Routes.CONFIGURATOR_PREVIEW}
+                        href={Routes.configuratorPreview}
                         target="_blank"
                     >
                         {"Preview"}
