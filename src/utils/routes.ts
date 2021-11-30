@@ -1,14 +1,15 @@
-const DASHBOARD = "/dashboard"
+const dashboard = "/dashboard"
 
 const Routes = {
-    HOME: "/",
-    DASHBOARD: DASHBOARD,
-    ANALYTICS: `${DASHBOARD}/analytics`,
-    CONFIGURATOR: `${DASHBOARD}/configurator`,
-    CONFIGURATOR_PREVIEW: `${DASHBOARD}/configurator/preview`,
-    CUSTOMERS_LIST: `${DASHBOARD}/customers`,
-    CUSTOMER_CREATE: `${DASHBOARD}/customers`,
-    CUSTOMER_EDIT: `${DASHBOARD}/customers`,
+    home: "/",
+    dashboard: dashboard,
+    analytics: `${dashboard}/analytics`,
+    configurator: `${dashboard}/configurator`,
+    configuratorPreview: `${dashboard}/configurator/preview`,
+    clientsList: `${dashboard}/clients`,
+    clientCreate: `${dashboard}/clients/create`,
+    clientEdit: (id: string) => `${dashboard}/clients/${id}/edit`,
+    clientView: (id: string) => `${dashboard}/clients/${id}/view`,
 }
 
 export default Routes
@@ -18,7 +19,7 @@ export function shouldUseDashboardTemplate(route: string) {
      * The routes in this array are exempted from using Dashboard template
      * Which include, side bar, header, ...
      */
-    const exceptions = [Routes.CONFIGURATOR_PREVIEW]
+    const exceptions = [Routes.configuratorPreview]
 
-    return route.startsWith(Routes.DASHBOARD) && !exceptions.includes(route)
+    return route.startsWith(Routes.dashboard) && !exceptions.includes(route)
 }

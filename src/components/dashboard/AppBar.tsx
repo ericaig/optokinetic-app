@@ -138,7 +138,7 @@ const AppBar: FC<AppBarProps> = (props) => {
                     component="div"
                     sx={{ display: { xs: 'none', sm: 'block' }, color: "white" }}
                 >
-                    <Link href={Routes.HOME}>{"Optokinetic"}</Link>
+                    <Link href={Routes.home}>{"Optokinetic"}</Link>
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
